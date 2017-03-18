@@ -1,5 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Web.Http;
+using System.Windows;
+using DataDisplay.Models;
+using Newtonsoft.Json;
 
 namespace DataDisplay.Controllers.Api
 {
@@ -7,19 +12,37 @@ namespace DataDisplay.Controllers.Api
     {
         public IHttpActionResult Get(string filename)
         {
-            var response = new List<WordCloudModel>
+            var response = new List<WordCloudModel>();
+
+            var inputFile = $"C:\\Hack24Input\\{filename}_Data.json";
+
+            string datafile;
+
+            using (var fs = File.OpenRead(inputFile))
             {
-                new WordCloudModel { text = "word", size = 100},
-                new WordCloudModel { text = "yet", size = 90},
-                new WordCloudModel { text = "another", size = 85},
-                new WordCloudModel { text = "for", size = 80},
-                new WordCloudModel { text = "the", size = 70},
-                new WordCloudModel { text = "cloud", size = 60},
-                new WordCloudModel { text = "of", size = 40},
-                new WordCloudModel { text = "words", size = 200},
-                new WordCloudModel { text = "that", size = 30},
-                new WordCloudModel { text = "are", size = 100}
-            };
+                using (var reader = new StreamReader(fs))
+                {
+                    datafile = reader.ReadToEnd();
+                }
+            }
+
+            var datapoints = JsonConvert.DeserializeObject<WordAnalysis>(datafile);
+
+            foreach (var wordCloudModel in datapoints.WordCloudModels)
+            {
+                var heatmapDataPoint = datapoints.DataPoints.FirstOrDefault(d => d.Input.Contains(wordCloudModel));
+
+                if (heatmapDataPoint == null)
+                {
+                    continue;
+                }
+
+                response.Add(new WordCloudModel
+                {
+                    text = wordCloudModel,
+                    size = (int) (new Vector(heatmapDataPoint.Arousal, heatmapDataPoint.Valence).Length*10)
+                });
+            }
 
             return Ok(response.ToArray());
         }

@@ -30,7 +30,7 @@ namespace DataDisplay.Controllers.Api
                 }
             }
 
-            var datapoints = JsonConvert.DeserializeObject<HeatmapDataPoint[]>(datafile);
+            var datapoints = JsonConvert.DeserializeObject<WordAnalysis>(datafile).DataPoints;
             return datapoints;
         }
 
