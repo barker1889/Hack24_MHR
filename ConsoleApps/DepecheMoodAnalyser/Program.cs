@@ -35,7 +35,7 @@ namespace DepecheMoodAnalyser
                 calcualtedWords.Add(new ValenceArousalScore
                 {
                     Word = wordScore.Word,
-                    Valance = CalculatePositiveValance(wordScore) - CalculateNegativeValance(wordScore),
+                    Valence = CalculatePositiveValance(wordScore) - CalculateNegativeValance(wordScore),
                     Arousal = CalculatePositiveArousal(wordScore) - CalculateNegativeArousal(wordScore)
                 });
             }
@@ -76,7 +76,7 @@ namespace DepecheMoodAnalyser
     public class ValenceArousalScore
     {
         public string Word { get; set; }
-        public double Valance { get; set; }
+        public double Valence { get; set; }
         public double Arousal { get; set; }
     }
 

@@ -20,7 +20,7 @@ namespace DataDisplay.Controllers.Api
 
             string datafile;
 
-            using (var fs = File.OpenRead("C:\\Hack24Input\\alice_DataAverage.json"))
+            using (var fs = File.OpenRead("C:\\Hack24Input\\eroticnovel_Data.json"))
             {
                 using (var reader = new StreamReader(fs))
                 {

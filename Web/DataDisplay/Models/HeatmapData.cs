@@ -22,7 +22,8 @@ namespace DataDisplay.Models
                 .Select(point => new[]
                 {
                     ((point.Valence + valanceRange) / (valanceRange * 2)) * width,
-                    height - ((point.Arousal / arousalRange) * height),
+                    height - (((point.Arousal + arousalRange) / (arousalRange * 2)) * height),
+                    //height - ((point.Arousal / arousalRange) * height),
                     1
                 })
                 .ToArray();
