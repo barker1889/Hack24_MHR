@@ -55,14 +55,18 @@
     <Compile Include="WordScore.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Data\alice.txt" />
+    <Content Include="Data\alice.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\eroticnovel.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\grimm.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Data\moby.txt" />
+    <Content Include="Data\moby.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="output_depechemoode.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
