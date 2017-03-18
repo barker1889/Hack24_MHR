@@ -13,8 +13,8 @@ namespace DataDisplay.Models
 
             // input = 0, output = 300
 
-            var valanceRange = 20;
-            var arousalRange = 18;
+            var valanceRange = 3;
+            var arousalRange = 4;
 
             // arousal
 

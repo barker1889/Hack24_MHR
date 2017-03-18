@@ -20,7 +20,7 @@ namespace DataDisplay.Controllers.Api
 
             string datafile;
 
-            using (var fs = File.OpenRead("C:\\Hack24Input\\outputData.json"))
+            using (var fs = File.OpenRead("C:\\Hack24Input\\alice_DataAverage.json"))
             {
                 using (var reader = new StreamReader(fs))
                 {
@@ -35,7 +35,7 @@ namespace DataDisplay.Controllers.Api
         {
             var data = new HeatmapData
             {
-                DataPoints = _dataPoints.Where(d => d.Arousal != 0.0 && d.Valence != 0.0).ToArray()
+                DataPoints = _dataPoints.Where(d => d.Arousal != 0.0d && d.Valence != 0.0d).ToArray()
             };
 
             //var randomDataPoints = new List<HeatmapDataPoint>();
