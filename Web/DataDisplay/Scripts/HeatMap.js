@@ -12,7 +12,11 @@ function draw() {
     frame = null;
 }
 
-$.ajax('/api/heatmapdata?width=600&height=600')
+var file = getParameterByName('filename', window.location);
+
+console.log(file);
+
+$.ajax('/api/heatmapdata?width=600&height=600&filename=' + file)
     .done(function(e) {
         heat.data(e);
         draw();
@@ -36,3 +40,14 @@ $('#range-intensity').on('change', function (e) {
     frame = frame || window.requestAnimationFrame(draw);
 });
 
+function getParameterByName(name, url) {
+    if (!url) {
+        url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}

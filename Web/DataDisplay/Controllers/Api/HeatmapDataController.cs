@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Http;
@@ -11,16 +10,19 @@ namespace DataDisplay.Controllers.Api
     public class HeatmapDataController : ApiController
     {
         private readonly Random _random;
-
-        private readonly HeatmapDataPoint[] _dataPoints;
-
+        
         public HeatmapDataController()
         {
             _random = new Random();
+        }
+
+        private static HeatmapDataPoint[] GetDataPoints(string fileName)
+        {
+            var inputFile = $"C:\\Hack24Input\\{fileName}_Data.json";
 
             string datafile;
 
-            using (var fs = File.OpenRead("C:\\Hack24Input\\eroticnovel_Data.json"))
+            using (var fs = File.OpenRead(inputFile))
             {
                 using (var reader = new StreamReader(fs))
                 {
@@ -28,34 +30,22 @@ namespace DataDisplay.Controllers.Api
                 }
             }
 
-            _dataPoints = JsonConvert.DeserializeObject<HeatmapDataPoint[]>(datafile);
+            var datapoints = JsonConvert.DeserializeObject<HeatmapDataPoint[]>(datafile);
+            return datapoints;
         }
 
-        public IHttpActionResult Get(double width = 1, double height = 1)
+        public IHttpActionResult Get(double width = 1, double height = 1, string filename = "eroticnovel")
         {
+            var datapoints = GetDataPoints(filename);
+
             var data = new HeatmapData
             {
-                DataPoints = _dataPoints.Where(d => d.Arousal != 0.0d && d.Valence != 0.0d).ToArray()
+                DataPoints = datapoints.Where(d => d.Arousal != 0.0d && d.Valence != 0.0d).ToArray()
             };
-
-            //var randomDataPoints = new List<HeatmapDataPoint>();
-
-            //for (var i = 0; i < 1000; i++)
-            //{
-            //    randomDataPoints.Add(new HeatmapDataPoint
-            //    {
-            //        Valence = _random.NextDouble() * (RandomBool() ? 1 : -1),
-            //        Arousal = _random.NextDouble() * (RandomBool() ? 1 : -1)
-            //    });
-            //}
-
-
-            var noData = _dataPoints.Count(d => d.Arousal == 0.0d && d.Valence == 0.0d);
-            var poorData = _dataPoints.Count(d => d.Arousal == 0.0d || d.Valence == 0.0d);
-            var lowData = _dataPoints.Count(d => d.Arousal < 2.0d && d.Valence < 2.0d);
-
-
-
+            
+            //var noData = datapoints.Count(d => d.Arousal == 0.0d && d.Valence == 0.0d);
+            //var poorData = datapoints.Count(d => d.Arousal == 0.0d || d.Valence == 0.0d);
+            //var lowData = datapoints.Count(d => d.Arousal < 2.0d && d.Valence < 2.0d);
 
             var response = data.ToSimpleHeatData(width, height);
 
