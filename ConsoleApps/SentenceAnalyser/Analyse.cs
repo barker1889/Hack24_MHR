@@ -10,7 +10,7 @@ namespace SentenceAnalyser
 {
     public class Analyse
     {
-        public List<RankedSentence> Text(string text)
+        public RankedOutput Text(string text)
         {
 
             var lexiconStream = Assembly
@@ -20,6 +20,7 @@ namespace SentenceAnalyser
             var wordScores = JsonConvert.DeserializeObject<List<WordScore>>(StreamToString(lexiconStream));
             var sentenceDataOneLine = text.Replace("\r\n", " ");
             var sentenceData = sentenceDataOneLine.Split(new[] { ".", "?", "!", "..." }, StringSplitOptions.RemoveEmptyEntries);
+            var wordList = new List<string>();
 
             var sentenceList = new Dictionary<string, decimal[]>();
 
@@ -34,6 +35,8 @@ namespace SentenceAnalyser
 
                     var foundWord = wordScores.FirstOrDefault(w => w.Word == strippedWord);
                     if (foundWord == null) continue;
+
+                    wordList.Add(word);
 
                     wordCount++;
 
@@ -51,12 +54,18 @@ namespace SentenceAnalyser
                     sentenceList.Add(sentence, sentenceScore);
             }
 
-            return sentenceList.Select(sentence => new RankedSentence
-            {
-                Arousal = sentence.Value[0],
-                Valence = sentence.Value[1],
-                Input = sentence.Key
-            }).ToList();
+            var output = new RankedOutput
+                         {
+                             RankedSentences = sentenceList.Select(sentence => new RankedSentence
+                                                                               {
+                                                                                   Arousal = sentence.Value[0],
+                                                                                   Valence = sentence.Value[1],
+                                                                                   Input = sentence.Key
+                                                                               }).ToList(),
+                             Words = wordList
+                         };
+
+            return output;
         }
 
         private static string StreamToString(Stream stream)
@@ -67,5 +76,12 @@ namespace SentenceAnalyser
                 return reader.ReadToEnd();
             }
         }
+    }
+
+    public class RankedOutput
+    {
+        public List<RankedSentence> RankedSentences { get; set; }
+
+        public List<string> Words { get; set; }
     }
 }
