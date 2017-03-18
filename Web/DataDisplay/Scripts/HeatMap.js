@@ -8,13 +8,11 @@ var radius = 20;
 var blur = 20;
 
 function draw() {
-    //console.time('draw');
     heat.draw();
-    //console.timeEnd('draw');
     frame = null;
 }
 
-$.ajax('/api/heatmapdata?width=700&height=600')
+$.ajax('/api/heatmapdata?width=600&height=600')
     .done(function(e) {
         heat.data(e);
         draw();

@@ -19,7 +19,10 @@
     <div>
         <div class="main-container">
             <div class="heatmap-container">
-                <canvas id="heatmap-canvas" width="700" height="600"></canvas>
+                <canvas id="heatmap-canvas" width="600" height="600"></canvas>
+                <div class="overlay">
+                    <img src="~/Content/Images/valencearousal_overlay.png" width="700" height="650"/>
+                </div>
             </div>
 
             <div class="settings">
@@ -36,6 +39,12 @@
                         <td>Blur</td>
                         <td>
                             <input id="range-blur" type="range" value="20" min="2" max="100" step="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Overlay</td>
+                        <td>
+                            <input id="check-overlay" type="checkbox" checked />
                         </td>
                     </tr>
                 </table>

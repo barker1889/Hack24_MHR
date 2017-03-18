@@ -25,8 +25,7 @@ namespace DataDisplay.Controllers.Api
                 randomDataPoints.Add(new HeatmapDataPoint
                 {
                     Valence = _random.NextDouble() * (RandomBool() ? 1 : -1),
-                    Arousal = _random.NextDouble() * (RandomBool() ? 1 : -1),
-                    Intensity = 1
+                    Arousal = _random.NextDouble() * (RandomBool() ? 1 : -1)
                 });
             }
 

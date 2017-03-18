@@ -13,7 +13,7 @@ namespace DataDisplay.Models
                 {
                     width + (point.Valence * width),
                     height + (point.Arousal * height),
-                    point.Intensity
+                    1
                 })
                 .ToArray();
         }
