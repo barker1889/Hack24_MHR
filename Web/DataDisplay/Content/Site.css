@@ -1,17 +1,7 @@
-﻿@font-face {
-    font-family: caviardreams_reg;
-    src: url('/Content/Fonts/CaviarDreams.ttf');
-}
-
-@font-face {
-    font-family: caviardreams_bold;
-    src: url('/Content/Fonts/CaviarDreams.ttf');
-}
-
-body {
+﻿body {
     margin: 0;
     padding: 0;
-    font-family: 'caviardreams_reg';
+    font-family: 'Raleway', sans-serif;;
     background-color: #efefef;
     color: #222;
 }
@@ -27,7 +17,6 @@ body {
 .heatmap-container {
     position: relative;
     background-color: #fff;
-    border: 1px solid #807b7b;
     border-radius: 5px;
 }
 
@@ -71,4 +60,98 @@ input[type=range] {
 
 .settings table td:last-child {
     border-radius: 0 5px 5px 0;
+}
+
+
+
+
+
+
+/*** BOOTSTRAP OVERRIDE*/
+
+.navbar-light {
+    background-color: #2c3e50 !important;
+    font-weight: bolder;
+}
+    .navbar-light .navbar-brand {
+        color: white !important;
+    }
+
+
+
+/** RANGE */
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 18px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #7f8c8d, 0px 0px 1px #0d0d0d;
+  background: #2980b9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #7f8c8d, 0px 0px 1px #0d0d0d;
+  border: 1px solid #7f8c8d;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -14px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #2980b9;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  background: #2980b9;
+  border-radius: 1.3px;
+  border: 0.2px solid #010101;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+/*** CARDS */
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card-3 {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card-4 {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-5 {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
