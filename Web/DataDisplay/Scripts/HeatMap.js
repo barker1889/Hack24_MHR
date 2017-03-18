@@ -15,8 +15,6 @@ function draw() {
 
 var file = getParameterByName('filename', window.location);
 
-console.log(file);
-
 $.ajax('/api/heatmapdata?width=600&height=600&scale=' + scale + '&filename=' + file)
     .done(function(e) {
         heat.data(e);
