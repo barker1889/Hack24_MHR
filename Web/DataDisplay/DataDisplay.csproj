@@ -160,6 +160,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Api\DataController.cs" />
     <Compile Include="Controllers\Api\HeatmapDataController.cs" />
     <Compile Include="Controllers\Api\WordCloudController.cs" />
     <Compile Include="Controllers\HomeController.cs" />

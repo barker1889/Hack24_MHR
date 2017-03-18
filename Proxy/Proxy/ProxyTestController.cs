@@ -72,7 +72,7 @@ namespace Proxy
 
                 using (var client = new HttpClient())
                 {
-                    client.PostAsync("http://localhost:12345/temppostaddress", new StringContent(plainTextBody));
+                    client.PostAsync("http://localhost:56613/api/Data/PostData", new StringContent(plainTextBody));
                 }
             }
 

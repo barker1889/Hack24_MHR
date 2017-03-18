@@ -9,7 +9,7 @@
 
     public class WordAnalysis
     {
-        public HeatmapDataPoint[] DataPoints { get; set; }
-        public string[] WordCloudModels { get; set; }
+        public HeatmapDataPoint[] RankedSentences { get; set; }
+        public string[] Words { get; set; }
     }
 }

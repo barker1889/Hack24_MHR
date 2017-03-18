@@ -28,9 +28,9 @@ namespace DataDisplay.Controllers.Api
 
             var datapoints = JsonConvert.DeserializeObject<WordAnalysis>(datafile);
 
-            foreach (var wordCloudModel in datapoints.WordCloudModels)
+            foreach (var wordCloudModel in datapoints.Words)
             {
-                var heatmapDataPoint = datapoints.DataPoints.FirstOrDefault(d => d.Input.Contains(wordCloudModel));
+                var heatmapDataPoint = datapoints.RankedSentences.FirstOrDefault(d => d.Input.Contains(wordCloudModel));
 
                 if (heatmapDataPoint == null)
                 {
@@ -44,7 +44,9 @@ namespace DataDisplay.Controllers.Api
                 });
             }
 
-            return Ok(response.ToArray());
+            
+
+            return Ok(response.OrderByDescending(w => w.size).Take(100).ToArray());
         }
     }
 

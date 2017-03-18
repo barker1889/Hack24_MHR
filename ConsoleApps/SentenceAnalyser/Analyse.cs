@@ -20,6 +20,7 @@ namespace SentenceAnalyser
             var wordScores = JsonConvert.DeserializeObject<List<WordScore>>(StreamToString(lexiconStream));
             var sentenceDataOneLine = text.Replace("\r\n", " ");
             var sentenceData = sentenceDataOneLine.Split(new[] { ".", "?", "!", "..." }, StringSplitOptions.RemoveEmptyEntries);
+            var wordCountDictionary = new Dictionary<string, int>();
             var wordList = new List<string>();
 
             var sentenceList = new Dictionary<string, decimal[]>();
@@ -36,7 +37,14 @@ namespace SentenceAnalyser
                     var foundWord = wordScores.FirstOrDefault(w => w.Word == strippedWord);
                     if (foundWord == null) continue;
 
-                    wordList.Add(word);
+                    if (wordCountDictionary.ContainsKey(strippedWord))
+                    {
+                        wordCountDictionary[strippedWord]++;
+                    }
+                    else
+                    {
+                        wordCountDictionary.Add(strippedWord, 1);
+                    }
 
                     wordCount++;
 
@@ -53,6 +61,9 @@ namespace SentenceAnalyser
                 if (!sentenceList.ContainsKey(sentence))
                     sentenceList.Add(sentence, sentenceScore);
             }
+
+            wordCountDictionary.OrderByDescending(kv => kv.Value);
+            wordList = wordCountDictionary.Keys.ToList();
 
             var output = new RankedOutput
                          {

@@ -9,13 +9,6 @@ namespace DataDisplay.Controllers.Api
 {
     public class HeatmapDataController : ApiController
     {
-        private readonly Random _random;
-        
-        public HeatmapDataController()
-        {
-            _random = new Random();
-        }
-
         private static HeatmapDataPoint[] GetDataPoints(string fileName)
         {
             var inputFile = $"C:\\Hack24Input\\{fileName}_Data.json";
@@ -30,7 +23,7 @@ namespace DataDisplay.Controllers.Api
                 }
             }
 
-            var datapoints = JsonConvert.DeserializeObject<WordAnalysis>(datafile).DataPoints;
+            var datapoints = JsonConvert.DeserializeObject<WordAnalysis>(datafile).RankedSentences;
             return datapoints;
         }
 
