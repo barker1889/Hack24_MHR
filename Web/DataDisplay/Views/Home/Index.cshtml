@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -12,14 +11,41 @@
     <link rel="stylesheet" href="~/Content/Site.css"/>
 </head>
 <body>
+
+<div class="content">
     <div>
-        <h1>Not snooping on employees application</h1>
-    
-        <canvas id="heatmap-canvas" width="700" height="600"></canvas>
+        <h1>Application title</h1>
     </div>
-    
-    <script src="~/Scripts/jquery-3.1.1.js"></script>
-    <script src="~/Scripts/simpleheat.js"></script>
-    <script src="~/Scripts/HeatMap.js"></script>
+    <div>
+        <div class="main-container">
+            <div class="heatmap-container">
+                <canvas id="heatmap-canvas" width="700" height="600"></canvas>
+            </div>
+
+            <div class="settings">
+                <h2>Heatmap Settings</h2>
+
+                <table>
+                    <tr>
+                        <td>Intensity</td>
+                        <td>
+                            <input id="range-intensity" type="range" value="20" min="10" max="150" step="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Blur</td>
+                        <td>
+                            <input id="range-blur" type="range" value="20" min="2" max="100" step="1" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/simpleheat.js"></script>
+<script src="~/Scripts/HeatMap.js"></script>
 </body>
 </html>

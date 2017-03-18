@@ -2,12 +2,39 @@
                                window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
 
 var heat = simpleheat('heatmap-canvas')
-        .max(18);
+        .max(18), frame;
+
+var radius = 20;
+var blur = 20;
+
+function draw() {
+    //console.time('draw');
+    heat.draw();
+    //console.timeEnd('draw');
+    frame = null;
+}
 
 $.ajax('/api/heatmapdata?width=700&height=600')
     .done(function(e) {
-        console.log(e);
-        heat
-            .data(e)
-            .draw();
+        heat.data(e);
+        draw();
     });
+
+$('input[type=range]').on('input', function () {
+    $(this).trigger('change');
+});
+
+$('#range-blur').on('change', function(e) {
+    blur = $(this).val();
+
+    heat.radius(+radius, +blur);
+    frame = frame || window.requestAnimationFrame(draw);
+});
+
+$('#range-intensity').on('change', function (e) {
+    radius = $(this).val();
+
+    heat.radius(+radius, +blur);
+    frame = frame || window.requestAnimationFrame(draw);
+});
+

@@ -1,7 +1,65 @@
-﻿body {
+﻿@font-face {
+    font-family: caviardreams_reg;
+    src: url('/Content/Fonts/CaviarDreams.ttf');
 }
 
-#heatmap-canvas {
-    border: 1px solid #00F;
+@font-face {
+    font-family: caviardreams_bold;
+    src: url('/Content/Fonts/CaviarDreams.ttf');
 }
 
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'caviardreams_reg';
+    background-color: #efefef;
+    color: #222;
+}
+
+.content {
+    margin: 0 40px;
+}
+
+.content h1 {
+    font-family: 'caviardreams_bold';
+}
+
+.heatmap-container {
+    background-color: #fff;
+    border: 1px solid #807b7b;
+    border-radius: 5px;
+}
+
+.main-container {
+    display: flex;
+    flex-flow: revert;
+    flex-grow: 1;
+}
+
+input[type=range] {
+    width: 100%;
+}
+
+.settings {
+    padding: 24px;
+    min-width: 200px;
+    min-width: 550px;
+}
+
+.settings table {
+    border-spacing: 0 7px;
+    width: 100%;
+}
+
+.settings table td {
+    background-color: #fbfbfb;
+    padding: 15px 9px;
+}
+
+.settings table td:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.settings table td:last-child {
+    border-radius: 0 5px 5px 0;
+}
