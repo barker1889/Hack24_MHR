@@ -34,7 +34,7 @@ namespace DataDisplay.Controllers.Api
             return datapoints;
         }
 
-        public IHttpActionResult Get(double width = 1, double height = 1, string filename = "eroticnovel")
+        public IHttpActionResult Get(double width = 1.0d, double height = 1.0d, double scale = 10.0d, string filename = "eroticnovel")
         {
             var datapoints = GetDataPoints(filename);
 
@@ -47,14 +47,11 @@ namespace DataDisplay.Controllers.Api
             //var poorData = datapoints.Count(d => d.Arousal == 0.0d || d.Valence == 0.0d);
             //var lowData = datapoints.Count(d => d.Arousal < 2.0d && d.Valence < 2.0d);
 
-            var response = data.ToSimpleHeatData(width, height);
+            var actualScale = scale / 10.0d;
+
+            var response = data.ToSimpleHeatData(width, height, actualScale);
 
             return Ok(response);
-        }
-
-        private bool RandomBool()
-        {
-            return _random.Next(1) == 1;
         }
     }
 }

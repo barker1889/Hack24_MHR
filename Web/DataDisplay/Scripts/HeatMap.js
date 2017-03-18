@@ -6,6 +6,7 @@ var heat = simpleheat('heatmap-canvas')
 
 var radius = 20;
 var blur = 20;
+var scale = 10;
 
 function draw() {
     heat.draw();
@@ -16,7 +17,7 @@ var file = getParameterByName('filename', window.location);
 
 console.log(file);
 
-$.ajax('/api/heatmapdata?width=600&height=600&filename=' + file)
+$.ajax('/api/heatmapdata?width=600&height=600&scale=' + scale + '&filename=' + file)
     .done(function(e) {
         heat.data(e);
         draw();
@@ -38,6 +39,16 @@ $('#range-intensity').on('change', function (e) {
 
     heat.radius(+radius, +blur);
     frame = frame || window.requestAnimationFrame(draw);
+});
+
+$('#range-scale').on('change', function (e) {
+    scale = $(this).val();
+
+    $.ajax('/api/heatmapdata?width=600&height=600&scale=' + scale + '&filename=' + file)
+    .done(function (e) {
+        heat.data(e);
+        draw();
+    });
 });
 
 function getParameterByName(name, url) {
