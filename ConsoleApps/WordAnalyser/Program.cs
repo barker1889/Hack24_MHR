@@ -44,7 +44,6 @@ namespace WordAnalyser
                     if (currentWord.Association != null)
                     {
                         AssignHappy(currentWord);
-                        AssignExcitement(currentWord);
                     }
 
                     var wordScore = new WordScore
