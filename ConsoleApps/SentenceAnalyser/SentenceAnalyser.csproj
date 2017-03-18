@@ -52,14 +52,16 @@
     <Compile Include="WordScore.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <Content Include="alice.txt" />
     <Content Include="Data\alice.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\moby.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="output_depechemoode.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="App.config" />
     <Content Include="lexicon.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

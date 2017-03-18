@@ -11,7 +11,7 @@ namespace SentenceAnalyser
     {
         static void Main(string[] args)
         {
-            var wordScores = JsonConvert.DeserializeObject<List<WordScore>>(System.IO.File.ReadAllText(@"lexicon.json"));
+            var wordScores = JsonConvert.DeserializeObject<List<WordScore>>(System.IO.File.ReadAllText(@"output_depechemoode.txt"));
 
             var txtFiles = Directory.GetFiles("Data", "*.txt")
                                      .Select(Path.GetFileNameWithoutExtension)
@@ -33,7 +33,7 @@ namespace SentenceAnalyser
                         if (string.IsNullOrEmpty(word)) continue;
                         var strippedWord = word.StripPunctuation();
 
-                        var foundWord = wordScores.SingleOrDefault(w => w.Word == strippedWord);
+                        var foundWord = wordScores.FirstOrDefault(w => w.Word == strippedWord);
                         if (foundWord == null) continue;
 
                         wordCount++;
