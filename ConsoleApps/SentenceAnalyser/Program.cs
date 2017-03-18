@@ -10,7 +10,7 @@ namespace SentenceAnalyser
     {
         static void Main(string[] args)
         {
-            var wordScores = JsonConvert.DeserializeObject<List<WordScore>>(System.IO.File.ReadAllText(@"lexicon.json"));
+            var wordScores = JsonConvert.DeserializeObject<List<WordScore>>(System.IO.File.ReadAllText(@"output_depechemoode.txt"));
 
             var sentenceDataOneLine = System.IO.File.ReadAllText("data.txt").Replace("\r\n", " ");
             var sentenceData = sentenceDataOneLine.Split(new[] { ".", "?", "!", "..." }, StringSplitOptions.RemoveEmptyEntries);
