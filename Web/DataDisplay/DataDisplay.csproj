@@ -139,6 +139,7 @@
     <Content Include="Content\Images\pixie.png" />
     <Content Include="Content\Images\valencearousal_overlay.png" />
     <Content Include="Content\Site.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Libs\SentenceAnalyserCore.dll" />
     <Content Include="Libs\SentenceAnalyserCore.pdb" />
