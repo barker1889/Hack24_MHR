@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using DataDisplay.Models;
 using Newtonsoft.Json;
+using SentenceAnalyserCore;
 
 namespace DataDisplay.Data
 {
@@ -29,29 +30,30 @@ namespace DataDisplay.Data
             }
         }
 
-        public static void WriteRawContent(string content)
+        public static void AppendRawContent(string content)
         {
             lock (RawFileLock)
             {
                 using (var writer = File.AppendText(RawContentFile))
                 {
-                    writer.Write(content);
+                    writer.Write(content + ".");
                 }
             }
         }
 
         public static void UpdateWorkingFile()
         {
+            var workingDataOutput = $"C:\\Hack24Input\\working_Data.json";
+
             lock (WorkingFileLock)
             {
-                var inputFile = $"C:\\Hack24Input\\working_Data.json";
-
-                File.Delete(inputFile);
-
-                //var analyse = new Analyse();
-                //var analysis = analyse.Text(File.ReadAllText($@"Data\{file}.txt"));
-                //Directory.CreateDirectory("Output");
-                //File.WriteAllText($@"Output\{file}_data.json", JsonConvert.SerializeObject(analysis));
+                if (File.Exists(workingDataOutput))
+                {
+                    File.Delete(workingDataOutput);
+                }
+                
+                var analysis = new Analyse().Text(File.ReadAllText(RawContentFile));
+                File.WriteAllText(workingDataOutput, JsonConvert.SerializeObject(analysis));
             }
         }
     }

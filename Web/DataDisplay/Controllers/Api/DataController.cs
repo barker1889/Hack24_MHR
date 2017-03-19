@@ -1,19 +1,32 @@
-﻿using System.Web.Http;
+﻿using System.IO;
+using System.Web.Http;
+using DataDisplay.Data;
 
 namespace DataDisplay.Controllers.Api
 {
     public class DataController : ApiController
     {
         [HttpPost]
-        public IHttpActionResult PostData(string data)
+        public IHttpActionResult Post()
         {
-            // Write data to a file? Then refresh I guess.
+            var data = GetStringFromBody();
 
-            // Call sentence processor
-
-            // Write formatted json to standard file
+            DataFile.AppendRawContent(data);
+            DataFile.UpdateWorkingFile();
 
             return Ok();
+        }
+
+        private string GetStringFromBody()
+        {
+            using (var contentStream = Request.Content.ReadAsStreamAsync().Result)
+            {
+                contentStream.Seek(0, SeekOrigin.Begin);
+                using (var sr = new StreamReader(contentStream))
+                {
+                    return sr.ReadToEnd();
+                }
+            }
         }
     }
 }

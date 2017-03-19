@@ -63,9 +63,6 @@
     <Content Include="Data\moby.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <EmbeddedResource Include="output_depechemoode.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Include="App.config" />
     <Content Include="lexicon.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

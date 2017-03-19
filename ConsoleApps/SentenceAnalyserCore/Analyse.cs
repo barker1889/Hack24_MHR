@@ -15,7 +15,7 @@ namespace SentenceAnalyserCore
 
             var lexiconStream = Assembly
                 .GetExecutingAssembly()
-                .GetManifestResourceStream("SentenceAnalyser.output_depechemoode.txt");
+                .GetManifestResourceStream("SentenceAnalyserCore.output_depechemoode.txt");
 
             var wordScores = JsonConvert.DeserializeObject<List<WordScore>>(StreamToString(lexiconStream));
             var sentenceDataOneLine = text.Replace("\r\n", " ");
