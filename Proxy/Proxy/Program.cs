@@ -1,21 +1,30 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
+using Topshelf;
 
 namespace Proxy
 {
     public class Program
     {
-        private static readonly ProxyTestController Controller = new ProxyTestController();
+        private static readonly GmailProxy Controller = new GmailProxy();
 
         public static void Main(string[] args)
         {
             NativeMethods.Handler = ConsoleEventCallback;
             NativeMethods.SetConsoleCtrlHandler(NativeMethods.Handler, true);
-            Controller.StartProxy();
-            Console.WriteLine();
-            Console.Read();
+            HostFactory.Run(x =>
+            {
+                x.Service<GmailProxy>(p =>
+                {
+                    p.ConstructUsing(name => new GmailProxy());
+                    p.WhenStarted(ptc => ptc.StartProxy());
+                    p.WhenStopped(ptc => ptc.Stop());
+                });
+                x.RunAsLocalSystem();
 
-            Controller.Stop();
+                x.SetDescription("Analyser");
+                x.SetDisplayName("Analyser");
+                x.SetServiceName("Analyser");
+            });
         }
 
 

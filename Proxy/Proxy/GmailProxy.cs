@@ -9,11 +9,11 @@ using Titanium.Web.Proxy.Models;
 
 namespace Proxy
 {
-    public class ProxyTestController
+    public class GmailProxy
     {
         private readonly ProxyServer _proxyServer;
 
-        public ProxyTestController()
+        public GmailProxy()
         {
             _proxyServer = new ProxyServer
                            {
@@ -72,7 +72,7 @@ namespace Proxy
 
                 using (var client = new HttpClient())
                 {
-                    client.PostAsync("http://localhost:56613/api/Data/PostData", new StringContent(plainTextBody));
+                    await client.PostAsync("http://localhost:56613/api/Data", new StringContent(plainTextBody));
                 }
             }
 
