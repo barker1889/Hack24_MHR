@@ -21,13 +21,30 @@
         //<div id="calm-word-associated"></div>
 
 
-        var positiveWordString = ''
-        for (var idx = 0; idx < e.PositiveWords.length; idx++) {
-            positiveWordString += '<span>' + e.PositiveWords[idx].Word + ',&nbsp;</span>';
+        var positiveWordString = '';
+        for (var idx = 0; idx < e.PositiveWords.length && idx < 100; idx++) {
+            positiveWordString += e.PositiveWords[idx].Word + ', ';
         }
+        $('#positive-word-associated')[0].innerHTML = '<p>' + positiveWordString + '</p>';
 
-        $('#positive-word-associated')[0].innerHTML = positiveWordString;
+        var negativeWordString = ''
+        for (var idx = 0; idx < e.NegativeWords.length && idx < 100; idx++) {
+            negativeWordString += e.NegativeWords[idx].Word + ', ';
+        }
+        $('#negative-word-associated')[0].innerHTML = '<p>' + negativeWordString + '</p>';
 
+        var arousingWordString = ''
+        for (var idx = 0; idx < e.ArousingWords.length && idx < 100; idx++) {
+            arousingWordString += e.ArousingWords[idx].Word + ', ';
+        }
+        $('#arousing-word-associated')[0].innerHTML = '<p>' + arousingWordString + '</p>';
+
+
+        var calmWordString = ''
+        for (var idx = 0; idx < e.CalmWords.length && idx < 100; idx++) {
+            calmWordString += e.CalmWords[idx].Word + ', ';
+        }
+        $('#calm-word-associated')[0].innerHTML = '<p>' + calmWordString + '</p>';
 
         //public WordCloudModel[] WordCloudModels { get; set; }
         //public SentenceWordAnalysis[] PositiveWords { get; set; }
