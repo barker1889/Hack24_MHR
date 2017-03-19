@@ -1,4 +1,4 @@
-﻿namespace SentenceAnalyser
+﻿namespace SentenceAnalyserCore
 {
     public class RankedSentence
     {

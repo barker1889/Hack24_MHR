@@ -13,3 +13,4 @@ logs/
 TestResults/
 packages/
 *.nupkg
+!Libs/*.dll

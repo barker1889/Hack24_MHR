@@ -1,6 +1,6 @@
 ﻿using System.Text;
 
-namespace SentenceAnalyser
+namespace SentenceAnalyserCore
 {
     public static class StringExtension
     {
