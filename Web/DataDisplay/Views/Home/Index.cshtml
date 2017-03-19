@@ -1,48 +1,63 @@
 ﻿@{
     Layout = "~/Views/Shared/_master.cshtml";
 }
-        <div class="main-container">
-            <div class="heatmap-container card-2">
-                <canvas id="heatmap-canvas" width="600" height="600"></canvas>
-                <div class="overlay">
-                    <img src="~/Content/Images/valencearousal_overlay.png" width="700" height="650"/>
-                </div>
-            </div>
-
-            <div class="settings">
-                <h2>Heatmap Settings</h2>
-
-                <table class="card-2">
-                    <tr>
-                        <td>Scale</td>
-                        <td>
-                            <input id="range-scale" type="range" value="10" min="5" max="50" step="5"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Intensity</td>
-                        <td>
-                            <input id="range-intensity" type="range" value="20" min="10" max="150" step="1"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Blur</td>
-                        <td>
-                            <input id="range-blur" type="range" value="20" min="2" max="100" step="1"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Overlay</td>
-                        <td>
-                            <input id="check-overlay" type="checkbox" checked/>
-                        </td>
-                    </tr>
-                </table>
-                
-                <h2 class="mt-2">Wordcloud</h2>
-                <div id="wordcloud" class="mt-1 card-2"></div>
-            </div>
+<div class="main-container">
+    <div class="heatmap-container card-2">
+        <canvas id="heatmap-canvas" width="600" height="600"></canvas>
+        <div class="overlay">
+            <img src="~/Content/Images/valencearousal_overlay.png" width="700" height="650"/>
         </div>
+    </div>
+
+    <div class="settings">
+        <h2>Heatmap Settings</h2>
+
+        <table class="card-2">
+            <tr>
+                <td>Scale</td>
+                <td>
+                    <input id="range-scale" type="range" value="10" min="5" max="50" step="5"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Intensity</td>
+                <td>
+                    <input id="range-intensity" type="range" value="20" min="10" max="150" step="1"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Blur</td>
+                <td>
+                    <input id="range-blur" type="range" value="20" min="2" max="100" step="1"/>
+                </td>
+            </tr>
+            <tr>
+                <td>Overlay</td>
+                <td>
+                    <input id="check-overlay" type="checkbox" checked/>
+                </td>
+            </tr>
+        </table>
+                
+        <h2 class="mt-2">Wordcloud</h2>
+        <div id="wordcloud" class="mt-1 card-2"></div>
+    </div>
+</div>
+
+<div>
+    <h2>Words associated with positive sentences</h2>
+    <div id="positive-word-associated"></div>
+    
+    <h2>Words associated with negative sentences</h2>
+    <div id="negative-word-associated"></div>
+    
+    <h2>Words associated with arousing sentences</h2>
+    <div id="arousing-word-associated"></div>
+    
+    <h2>Words associated with calm sentences</h2>
+    <div id="calm-word-associated"></div>
+</div>
+
 @section scripts {
     <script src="~/Scripts/d3/d3.min.js"></script>
     <script src="~/Scripts/d3/d3.layout.cloud.js"></script>

@@ -98,13 +98,18 @@ namespace SentenceAnalyserCore
             return output;
         }
 
+        private List<string> CommonWords = new List<string>
+        {
+            "the", "has", "was", "were", "be", "to", "of", "and", "a", "in", "that", "have", "i", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", "about", "who", "get", "which", "go", "me", "when", "make", "can", "like", "time", "no", "just", "him", "know", "take", "people", "into", "year", "your", "some", "could", "them", "see", "other", "than", "then", "look", "only", "come", "its", "over", "think", "also", "back", "after", "use", "two", "how", "our", "first", "well", "way", "even", "want", "because", "any", "these", "give", "most", "us"
+        };
+
         private List<SentenceWordAnalysis> GetCommonWords(IEnumerable<RankedSentence> sentence)
         {
             var result = new List<SentenceWordAnalysis>();
 
             foreach (var rankedSentence in sentence)
             {
-                foreach (var sentenceWord in rankedSentence.Input.Split(' '))
+                foreach (var sentenceWord in rankedSentence.Input.Split(' ').Where(i => !string.IsNullOrWhiteSpace(i) && !CommonWords.Contains(i.ToLower())))
                 {
                     var existingSentenceWordAnalysis = result.FirstOrDefault(w => w.Word.Equals(sentenceWord, StringComparison.OrdinalIgnoreCase));
 

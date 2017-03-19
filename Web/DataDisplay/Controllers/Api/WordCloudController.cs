@@ -6,6 +6,7 @@ using System.Windows;
 using DataDisplay.Data;
 using DataDisplay.Models;
 using Newtonsoft.Json;
+using SentenceAnalyserCore;
 
 namespace DataDisplay.Controllers.Api
 {
@@ -33,8 +34,32 @@ namespace DataDisplay.Controllers.Api
                 });
             }
 
-            return Ok(wordCloudResponse.OrderByDescending(w => w.size).Take(100).ToArray());
+
+            var positiveWords = analysis.PositiveWords?.OrderByDescending(w => w.Count);
+            var negativeWords = analysis.NegativeWords?.OrderByDescending(w => w.Count);
+            var arousingWords = analysis.ArousingWords?.OrderByDescending(w => w.Count);
+            var boredWords = analysis.BoredWords?.OrderByDescending(w => w.Count);
+
+            var fullResponse = new WordCloudResponseModel
+            {
+                WordCloudModels = wordCloudResponse.OrderByDescending(w => w.size).Take(100).ToArray(),
+                PositiveWords = positiveWords?.ToArray(),
+                NegativeWords = negativeWords?.ToArray(),
+                ArousingWords = arousingWords?.ToArray(),
+                CalmWords = boredWords?.ToArray()
+            };
+
+            return Ok(fullResponse);
         }
+    }
+
+    public class WordCloudResponseModel
+    {
+        public WordCloudModel[] WordCloudModels { get; set; }
+        public SentenceWordAnalysis[] PositiveWords { get; set; }
+        public SentenceWordAnalysis[] NegativeWords { get; set; }
+        public SentenceWordAnalysis[] ArousingWords { get; set; }
+        public SentenceWordAnalysis[] CalmWords { get; set; }
     }
 
     public class WordCloudModel
