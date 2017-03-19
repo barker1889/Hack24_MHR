@@ -37,6 +37,9 @@
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SentenceAnalyserCore">
+      <HintPath>..\SentenceAnalyserCore\bin\Debug\SentenceAnalyserCore.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -73,12 +76,6 @@
     <Content Include="data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SentenceAnalyserCore\SentenceAnalyserCore.csproj">
-      <Project>{d245d15d-e052-4afb-aeb8-5b3f6cfd928c}</Project>
-      <Name>SentenceAnalyserCore</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

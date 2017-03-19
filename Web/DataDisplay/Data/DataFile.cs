@@ -15,6 +15,11 @@ namespace DataDisplay.Data
 
         public static WordAnalysis GetContents(string filename)
         {
+            if (string.IsNullOrWhiteSpace(filename) || filename == "null")
+            {
+                filename = "working";
+            }
+
             var inputFile = $"C:\\Hack24Input\\{filename}_Data.json";
 
             lock (filename == "working" ?  WorkingFileLock : FileLock)
