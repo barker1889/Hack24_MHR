@@ -109,9 +109,15 @@ namespace SentenceAnalyserCore
 
             foreach (var rankedSentence in sentence)
             {
-                foreach (var sentenceWord in rankedSentence.Input.Split(' ').Where(i => !string.IsNullOrWhiteSpace(i) && !CommonWords.Contains(i.ToLower())))
+                foreach (var sentenceWord in rankedSentence.Input.Split(' '))
                 {
-                    var existingSentenceWordAnalysis = result.FirstOrDefault(w => w.Word.Equals(sentenceWord, StringComparison.OrdinalIgnoreCase));
+                    // .Where(i => !string.IsNullOrWhiteSpace(i) && !CommonWords.Contains(i.ToLower())
+                    var thisWord = sentenceWord.ToLower().StripPunctuation();
+
+                    if(string.IsNullOrWhiteSpace(thisWord)) continue;
+                    if(CommonWords.Contains(thisWord.ToLower())) continue;
+
+                    var existingSentenceWordAnalysis = result.FirstOrDefault(w => w.Word.Equals(thisWord, StringComparison.OrdinalIgnoreCase));
 
                     if (existingSentenceWordAnalysis != null)
                     {
@@ -119,7 +125,7 @@ namespace SentenceAnalyserCore
                     }
                     else
                     {
-                        result.Add(new SentenceWordAnalysis {Count = 1, Word = sentenceWord});
+                        result.Add(new SentenceWordAnalysis {Count = 1, Word = thisWord });
                     }
                 }
             }

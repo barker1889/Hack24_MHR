@@ -13,6 +13,7 @@ namespace DataDisplay.Controllers.Api
     public class WordCloudController : ApiController
     {
         public IHttpActionResult Get(string filename)
+
         {
             var analysis = DataFile.GetContents(filename);
 
