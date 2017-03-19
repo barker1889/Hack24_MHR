@@ -9,5 +9,10 @@ namespace DataDisplay.Controllers
         {
             return View();
         }
+
+        public ActionResult Feedback()
+        {
+            return View("AddFeedback");
+        }
     }
 }

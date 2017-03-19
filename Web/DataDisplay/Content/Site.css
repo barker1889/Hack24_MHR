@@ -66,8 +66,30 @@ input[type=range] {
     border-radius: 0 5px 5px 0;
 }
 
+.feedback-form {
+    width: 75%;
+}
 
+.feedback-form .alert-success {
+    background-color: #27ae60;
+    border-color: #d0e9c6;
+    color: white;
+    -ms-transition: all 0.7s ease-in;
+    -o-transition: all 0.7s ease-in;
+    -webkit-transition: all 0.7s ease-in;
+    transition: all 0.7s ease-in;
+    -ms-opacity: 0;
+    opacity: 0;
+}
 
+.feedback-form .alert-success.show {
+    -ms-opacity: 1;
+    opacity: 1;
+}
+
+#feedback {
+    height: 500px;
+}
 
 
 
@@ -81,8 +103,18 @@ input[type=range] {
         color: white !important;
     }
 
+.btn {
+    font-family: 'Raleway'
+}
+    .btn.btn-info {
+        color: white;
+        background-color: #2c3e50;
+        border: 0;
+    }
 
-
+    .btn:hover {
+        cursor: pointer; 
+    }
 /** RANGE */
 
 input[type=range] {

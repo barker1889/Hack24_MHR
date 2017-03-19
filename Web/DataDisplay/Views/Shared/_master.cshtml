@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>APPLICATION TITLE</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/Site.css" />
+</head>
+<body>
+<nav class="navbar navbar-light bg-faded card-2">
+    <a class="navbar-brand" href="#">
+        APPLICATION TITLE
+    </a>
+</nav>
+<div class="container mt-5">
+    <div>
+        <div class="main-container">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>

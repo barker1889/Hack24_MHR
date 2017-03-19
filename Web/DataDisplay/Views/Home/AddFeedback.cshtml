@@ -1,0 +1,34 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Feedback";
+    Layout = "~/Views/Shared/_master.cshtml";
+}
+
+<form class="feedback-form">
+    <div class="form-group">
+        <label for="feedback">Please type in your feedback below</label>
+        <small id="feedbackHelp" class="form-text text-muted">Be as honest as possible, everything inputted is completely anonymous</small>
+        <textarea class="form-control" id="feedback" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <button id="submit-feedback" class="btn btn-info" onclick="return false;">Submit feedback!</button>
+    </div>
+    <div class="alert alert-success" role="alert">
+        <strong>Thank you!</strong> All feedback is really appreciated
+    </div>
+</form>
+
+@section scripts {
+    <script type="text/javascript">
+        $(() => {
+            $('#submit-feedback').on('click', () => {
+                $.post("api/PostData", $('#feedback').val())
+                      .done(function () {
+                        $('.alert').addClass('show');
+                    });
+            });
+        })
+    </script>
+}
+
