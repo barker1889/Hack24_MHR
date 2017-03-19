@@ -115,6 +115,10 @@ input[type=range] {
     .btn:hover {
         cursor: pointer; 
     }
+
+.nav-link {
+    color: #fdf6ee !important;
+}
 /** RANGE */
 
 input[type=range] {

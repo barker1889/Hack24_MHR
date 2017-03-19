@@ -5,22 +5,43 @@
     <title>APPLICATION TITLE</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700" rel="stylesheet">
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="~/Content/Site.css" />
 </head>
 <body>
-<nav class="navbar navbar-light bg-faded card-2">
-    <a class="navbar-brand" href="#">
-        APPLICATION TITLE
-    </a>
-</nav>
-<div class="container mt-5">
-    <div>
-        <div class="main-container">
-            @RenderBody()
+    <nav class="navbar navbar-light navbar-toggleable-md bg-faded card-2">
+        <a class="navbar-brand" href="#">
+            <img src="/Content/Images/pixie.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            Where Is My Mind?
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">               
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Analysis
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/?filename=working">Working</a>
+                        <a class="dropdown-item" href="/?filename=alice">Alice In Wonderland</a>
+                        <a class="dropdown-item" href="/?filename=moby">Moby Dick</a>
+                        <a class="dropdown-item" href="/?filename=grimm">Brothers Grimm</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/AddFeedback">Add Feedback</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-5">
+        <div>
+            <div class="main-container">
+                @RenderBody()
+            </div>
         </div>
     </div>
-</div>
-    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>

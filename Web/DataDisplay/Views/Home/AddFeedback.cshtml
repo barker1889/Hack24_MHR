@@ -1,7 +1,7 @@
 ﻿@model dynamic
 
 @{
-    ViewBag.Title = "Feedback";
+    ViewBag.Title = "Where Is My Mind?";
     Layout = "~/Views/Shared/_master.cshtml";
 }
 
@@ -23,7 +23,7 @@
     <script type="text/javascript">
         $(() => {
             $('#submit-feedback').on('click', () => {
-                $.post("api/PostData", $('#feedback').val())
+                $.post("api/Data", $('#feedback').val())
                       .done(function () {
                         $('.alert').addClass('show');
                     });
