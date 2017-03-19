@@ -100,7 +100,7 @@ namespace SentenceAnalyserCore
 
         private List<string> CommonWords = new List<string>
         {
-            "the", "has", "was", "were", "be", "to", "of", "and", "a", "in", "that", "have", "i", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", "about", "who", "get", "which", "go", "me", "when", "make", "can", "like", "time", "no", "just", "him", "know", "take", "people", "into", "year", "your", "some", "could", "them", "see", "other", "than", "then", "look", "only", "come", "its", "over", "think", "also", "back", "after", "use", "two", "how", "our", "first", "well", "way", "even", "want", "because", "any", "these", "give", "most", "us"
+            "the", "has", "is", "had", "you", "are", "was", "were", "be", "to", "of", "and", "a", "in", "that", "have", "i", "it", "for", "not", "on", "with", "he", "as", "you", "do", "at", "this", "but", "his", "by", "from", "they", "we", "say", "her", "she", "or", "an", "will", "my", "one", "all", "would", "there", "their", "what", "so", "up", "out", "if", "about", "who", "get", "which", "go", "me", "when", "make", "can", "like", "time", "no", "just", "him", "know", "take", "people", "into", "year", "your", "some", "could", "them", "see", "other", "than", "then", "look", "only", "come", "its", "over", "think", "also", "back", "after", "use", "two", "how", "our", "first", "well", "way", "even", "want", "because", "any", "these", "give", "most", "us"
         };
 
         private List<SentenceWordAnalysis> GetCommonWords(IEnumerable<RankedSentence> sentence)
@@ -111,10 +111,11 @@ namespace SentenceAnalyserCore
             {
                 foreach (var sentenceWord in rankedSentence.Input.Split(' '))
                 {
-                    // .Where(i => !string.IsNullOrWhiteSpace(i) && !CommonWords.Contains(i.ToLower())
-                    var thisWord = sentenceWord.ToLower().StripPunctuation();
+                    var wordChars = sentenceWord.ToLower().Replace("`","").ToCharArray();
 
-                    if(string.IsNullOrWhiteSpace(thisWord)) continue;
+                    var thisWord = new string(wordChars.Where(c => !char.IsPunctuation(c)).ToArray());
+
+                    if (string.IsNullOrWhiteSpace(thisWord)) continue;
                     if(CommonWords.Contains(thisWord.ToLower())) continue;
 
                     var existingSentenceWordAnalysis = result.FirstOrDefault(w => w.Word.Equals(thisWord, StringComparison.OrdinalIgnoreCase));
