@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SentenceAnalyser
+namespace SentenceAnalyserCore
 {
     public class WordScore
     {

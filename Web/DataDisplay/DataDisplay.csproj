@@ -143,9 +143,6 @@
     <Content Include="Content\Fonts\CaviarDreams_Bold.ttf" />
     <Content Include="Content\Fonts\CaviarDreams_BoldItalic.ttf" />
     <Content Include="Content\Fonts\CaviarDreams_Italic.ttf" />
-    <Content Include="Data\outputData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Scripts\d3\LICENSE" />
     <Content Include="Scripts\d3\d3.layout.cloud.js" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
@@ -164,11 +161,13 @@
     <Compile Include="Controllers\Api\HeatmapDataController.cs" />
     <Compile Include="Controllers\Api\WordCloudController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data\DataFile.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\HeatmapData.cs" />
     <Compile Include="Models\HeatmapDataPoint.cs" />
+    <Compile Include="Models\WordAnalysis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace SentenceAnalyser
+namespace SentenceAnalyserCore
 {
     public class Analyse
     {

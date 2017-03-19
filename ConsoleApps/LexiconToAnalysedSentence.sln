@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentenceAnalyser", "Sentenc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepecheMoodAnalyser", "DepecheMoodAnalyser\DepecheMoodAnalyser.csproj", "{CFD6579A-30E7-45E7-8796-A6CC0C2647C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SentenceAnalyserCore", "SentenceAnalyserCore\SentenceAnalyserCore.csproj", "{D245D15D-E052-4AFB-AEB8-5B3F6CFD928C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CFD6579A-30E7-45E7-8796-A6CC0C2647C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFD6579A-30E7-45E7-8796-A6CC0C2647C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFD6579A-30E7-45E7-8796-A6CC0C2647C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D245D15D-E052-4AFB-AEB8-5B3F6CFD928C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D245D15D-E052-4AFB-AEB8-5B3F6CFD928C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D245D15D-E052-4AFB-AEB8-5B3F6CFD928C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D245D15D-E052-4AFB-AEB8-5B3F6CFD928C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

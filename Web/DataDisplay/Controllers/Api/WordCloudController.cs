@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Http;
 using System.Windows;
+using DataDisplay.Data;
 using DataDisplay.Models;
 using Newtonsoft.Json;
 
@@ -12,41 +13,27 @@ namespace DataDisplay.Controllers.Api
     {
         public IHttpActionResult Get(string filename)
         {
-            var response = new List<WordCloudModel>();
+            var analysis = DataFile.GetContents(filename);
 
-            var inputFile = $"C:\\Hack24Input\\{filename}_Data.json";
-
-            string datafile;
-
-            using (var fs = File.OpenRead(inputFile))
+            var wordCloudResponse = new List<WordCloudModel>();
+            
+            foreach (var wordCloudModel in analysis.Words)
             {
-                using (var reader = new StreamReader(fs))
-                {
-                    datafile = reader.ReadToEnd();
-                }
-            }
-
-            var datapoints = JsonConvert.DeserializeObject<WordAnalysis>(datafile);
-
-            foreach (var wordCloudModel in datapoints.Words)
-            {
-                var heatmapDataPoint = datapoints.RankedSentences.FirstOrDefault(d => d.Input.Contains(wordCloudModel));
+                var heatmapDataPoint = analysis.RankedSentences.FirstOrDefault(d => d.Input.Contains(wordCloudModel));
 
                 if (heatmapDataPoint == null)
                 {
                     continue;
                 }
 
-                response.Add(new WordCloudModel
+                wordCloudResponse.Add(new WordCloudModel
                 {
                     text = wordCloudModel,
                     size = (int) (new Vector(heatmapDataPoint.Arousal, heatmapDataPoint.Valence).Length*10)
                 });
             }
 
-            
-
-            return Ok(response.OrderByDescending(w => w.size).Take(100).ToArray());
+            return Ok(wordCloudResponse.OrderByDescending(w => w.size).Take(100).ToArray());
         }
     }
 

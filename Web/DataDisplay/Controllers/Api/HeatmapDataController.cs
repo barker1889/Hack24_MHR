@@ -1,39 +1,19 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
+using DataDisplay.Data;
 using DataDisplay.Models;
-using Newtonsoft.Json;
 
 namespace DataDisplay.Controllers.Api
 {
     public class HeatmapDataController : ApiController
     {
-        private static HeatmapDataPoint[] GetDataPoints(string fileName)
-        {
-            var inputFile = $"C:\\Hack24Input\\{fileName}_Data.json";
-
-            string datafile;
-
-            using (var fs = File.OpenRead(inputFile))
-            {
-                using (var reader = new StreamReader(fs))
-                {
-                    datafile = reader.ReadToEnd();
-                }
-            }
-
-            var datapoints = JsonConvert.DeserializeObject<WordAnalysis>(datafile).RankedSentences;
-            return datapoints;
-        }
-
         public IHttpActionResult Get(double width = 1.0d, double height = 1.0d, double scale = 10.0d, string filename = "eroticnovel")
         {
-            var datapoints = GetDataPoints(filename);
+            var analysis = DataFile.GetContents(filename);
 
             var data = new HeatmapData
             {
-                DataPoints = datapoints.Where(d => d.Arousal != 0.0d && d.Valence != 0.0d).ToArray()
+                DataPoints = analysis.RankedSentences.Where(sentence => sentence.Arousal != 0.0d && sentence.Valence != 0.0d).ToArray()
             };
             
             //var noData = datapoints.Count(d => d.Arousal == 0.0d && d.Valence == 0.0d);

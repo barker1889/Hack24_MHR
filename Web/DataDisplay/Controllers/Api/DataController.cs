@@ -8,6 +8,11 @@ namespace DataDisplay.Controllers.Api
         public IHttpActionResult PostData(string data)
         {
             // Write data to a file? Then refresh I guess.
+
+            // Call sentence processor
+
+            // Write formatted json to standard file
+
             return Ok();
         }
     }
